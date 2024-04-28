@@ -42,19 +42,26 @@ Selecione uma opção: ''')
     if menu == '1':
         print('Você selecinou a opção CADASTRAR TAXAS')
         sleep(1)
-        numero_de_operadoras = int(input('Digite o número de operadoras que você quer cadastrar: '))
-        contador_de_taxas = 0
-        while contador_de_taxas < numero_de_operadoras:
-            operadora = input(f'Digite o nome da operadora {contador_de_taxas + 1}: ').upper()
-            taxa = float(input('Digite a porcentagem da taxa (apenas numeros): '))
-            taxas_operadoras.append((operadora, taxa))
-            contador_de_taxas += 1
-            print(f'Operadora {operadora} cadastrada! Taxa de {taxa}%')
+        numero_de_operadoras = (input('Digite o número de operadoras que você quer cadastrar: '))
+        validar_numero_de_operadoras = numero_de_operadoras.isdigit()
+        if validar_numero_de_operadoras:
+            int_numero_de_operadoras = int(numero_de_operadoras)
+            contador_de_taxas = 0
+            while contador_de_taxas < int_numero_de_operadoras:
+                operadora = input(f'Digite o nome da operadora {contador_de_taxas + 1}: ').upper()
+                taxa = float(input('Digite a porcentagem da taxa (apenas numeros): '))
+                taxas_operadoras.append((operadora, taxa))
+                contador_de_taxas += 1
+                print(f'Operadora {operadora} cadastrada! Taxa de {taxa}%')
+                sleep(2)
+                os.system('clear')
+            print('Todas as operadoras foram cadastradas.')
+            sleep(1)
+            os.system('clear')
+        else:
+            print('Opção inválida.')
             sleep(2)
             os.system('clear')
-        print('Todas as operadoras foram cadastradas.')
-        sleep(1)
-        os.system('clear')
 
     # Incluir venda - 2
     if menu == '2':
@@ -102,3 +109,4 @@ Selecione uma opção: ''')
         print(f'LÍQUIDO À RECEBER: {total_liquido}')
         input('Pressione qualquer tecla para sair: ')
         os.system('clear')
+    
